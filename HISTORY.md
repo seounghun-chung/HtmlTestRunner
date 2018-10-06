@@ -34,3 +34,5 @@
 ## 1.1.2 (2018-01-27)
 
 * Minor fix
+
+Merge : https://github.com/oldani/HtmlTestRunner/tree/791b0eaf1579f5e1d0795d1ea18658c4884344fd
