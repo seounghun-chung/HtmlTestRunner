@@ -34,7 +34,10 @@ def render_html(template, **kwargs):
     template_file = load_template(template)
     if template_file:
         template = Template(template_file)
-        return template.render(**kwargs)
+        import platform
+        env = ('\n\tOS: %s\n\tProcess: %s\n\tPython Ver: %s' % (platform.platform(), platform.processor(), sys.version))
+        env = '<span style="white-space: pre-wrap">' + env + '</span>'
+        return template.render(**kwargs,author=os.getlogin(), env = env)
 
 
 def testcase_name(test_method):
@@ -82,7 +85,7 @@ class _TestInfo(object):
 
         self.is_subtest = subTest is not None
 
-        self.test_description = self.test_result.getDescription(test_method)
+        self.test_description = test_method._testMethodDoc.strip() if type(test_method._testMethodDoc) is str else None
         self.test_exception_info = (
             '' if outcome in (self.SUCCESS, self.SKIP)
             else self.test_result._exc_info_to_string(

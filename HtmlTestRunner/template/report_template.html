@@ -9,9 +9,12 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-10">
                 <h2 class="text-capitalize">{{ title }}</h2>
-                <p class='attribute'><strong>Start Time: </strong>{{ header_info.start_time.strftime("%Y-%m-%d %H:%M:%S") }}</p>
+                <p class='attribute'><strong>Test Environment: </strong> {{env}} </p>                       
+                <p class='attribute'><strong>Start Time: </strong>{{ header_info.start_time.strftime("%Y-%m-%d %H:%M:%S") }}</p>                
+                <p class='attribute'><strong>Author: </strong>{{ author }}</p>                    
+                <p class='attribute'><strong>Note: </strong> {{Note}}</p>                                
                 <p class='attribute'><strong>Duration: </strong>{{ header_info.status.duration }}</p>
                 <p class='attribute'><strong>Summary: </strong>Total: {{ header_info.status.total }}, Pass: {{ header_info.status.success }}{% if header_info.status.failure %}, Fail: {{ header_info.status.failure }}{% endif %}{% if header_info.status.error %}, Error: {{ header_info.status.error }}{% endif %}{% if header_info.status.skip %}, Skip: {{ header_info.status.skip }}{% endif %}</p>
             </div>
@@ -55,17 +58,19 @@
                         {%- if (test_case.stdout or test_case.err or test_case.err) and test_case.outcome != test_case.SKIP %}
                         <tr style="display:none;">
                             <td class="col-xs-9" colspan="3">
-                                {%- if test_case.stdout %}<p>{{ test_case.stdout }}</p>{% endif %}
-                                {%- if test_case.err %}<p style="color:maroon;">{{ test_case.err[0].__name__ }}: {{ test_case.err[1] }}</p>{% endif %}
-                                {%- if test_case.err %}<p style="color:maroon;">{{ test_case.test_exception_info }}</p>{% endif %}
+                                <strong> {%- if test_case.test_description %}<p>Test Description: {{ test_case.test_description }}</p>{% endif %} </strong>                            
+                                {%- if test_case.stdout %}<p style="white-space: pre-wrap;">{{ test_case.stdout }}</p>{% endif %}
+                                {%- if test_case.err %}<p style="color:maroon;white-space: pre-wrap;">{{ test_case.err[0].__name__ }}: {{ test_case.err[1] }}</p>{% endif %}
+                                {%- if test_case.err %}<p style="color:maroon;white-space: pre-wrap;">{{ test_case.test_exception_info }}</p>{% endif %}
                             </td>
                         </tr>
                         {%- endif %}
                         {%- if (test_case.stdout or test_case.err or test_case.err) and test_case.outcome == test_case.SKIP %}
                         <tr style="display:none;">
                             <td class="col-xs-9" colspan="3">
-                                {%- if test_case.stdout %}<p>{{ test_case.stdout }}</p>{% endif %}
-                                {%- if test_case.err %}<p style="color:maroon;">{{ test_case.err }}</p>{% endif %}
+                                <strong> {%- if test_case.test_description %}<p>Test Description: {{ test_case.test_description }}</p>{% endif %} </strong>                                    
+                                {%- if test_case.stdout %}<p style="white-space: pre-wrap;">{{ test_case.stdout }}</p>{% endif %}
+                                {%- if test_case.err %}<p style="color:maroon; white-space: pre-wrap;">{{ test_case.err }}</p>{% endif %}
                             </td>
                         </tr>
                         {%- endif %}
@@ -114,8 +119,8 @@
                                         {%- if subtest.err or subtest.err %}
                                         <tr style="display:none;">
                                             <td class="col-xs-9" colspan="3">
-                                                {%- if subtest.err %}<p style="color:maroon;">{{ subtest.err[0].__name__ }}: {{ subtest.err[1] }}</p>{% endif %}
-                                                {%- if subtest.err %}<p style="color:maroon;">{{ subtest.test_exception_info }}</p>{% endif %}
+                                                {%- if subtest.err %}<p style="color:maroon; white-space: pre-wrap;">{{ subtest.err[0].__name__ }}: {{ subtest.err[1] }}</p>{% endif %}
+                                                {%- if subtest.err %}<p style="color:maroon; white-space: pre-wrap;">{{ subtest.test_exception_info }}</p>{% endif %}
                                             </td>
                                         </tr>
                                         {%- endif %}
