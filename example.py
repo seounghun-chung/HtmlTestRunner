@@ -12,5 +12,6 @@ runner = HTMLTestRunner(output='example_suite',
                         report_name='Test Result V0.0.1', 
                         report_title='Test Result V0.0.1',
                         template_args=template_args, 
-                        combine_reports = True)
+                        combine_reports = True,
+                        open_in_browser = True)
 runner.run(suite)

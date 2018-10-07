@@ -4,6 +4,9 @@ from HtmlTestRunner import HTMLTestRunner
 
 
 class My_Tests(unittest.TestCase):
+    @classmethod
+    def setUpClass(self):
+        pass
 
     def test_one(self):
         self.assertTrue(True)
