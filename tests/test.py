@@ -9,6 +9,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual('foo'.upper(), 'FOO')
 
     def test_isupper(self):
+        """ This test always return success """
         self.assertTrue('FOO'.isupper())
         self.assertFalse('Foo'.isupper())
 
