@@ -1,6 +1,6 @@
 import HtmlTestRunner
 import unittest
-
+import warnings
 
 class TestStringMethods(unittest.TestCase):
     """ Example test for HtmlRunner. """
@@ -8,6 +8,15 @@ class TestStringMethods(unittest.TestCase):
     def test_upper(self):
         self.assertEqual('foo'.upper(), 'FOO')
 
+    def test_warning1(self):
+        self.assertEqual('foo'.upper(), 'FOO')
+        warnings.warn('is really upper?')
+        
+    def test_warning2(self):
+        warnings.warn('is really upper?')
+        self.assertEqual('foo'.upper(), 'FOO')
+        warnings.warn('yes it is!')
+        
     def test_isupper(self):
         """ This test always return success """
         self.assertTrue('FOO'.isupper())
