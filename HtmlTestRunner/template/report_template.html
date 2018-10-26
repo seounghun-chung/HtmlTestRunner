@@ -49,12 +49,12 @@
                                 </span>
                             </td>
                             <td class="col-xs-1">
-                                {%- if (test_case.stdout or test_case.err or test_case.warning_message) %}
+                                {%- if (test_case.stdout or test_case.err or test_case.test_description or test_case.warning_message) %}
                                 <button class="btn btn-default btn-xs">View</button>
                                 {%- endif %}
                             </td>
                         </tr>
-                        {%- if (test_case.stdout or test_case.err or test_case.err or test_case.warning_message) and test_case.outcome != test_case.SKIP %}
+                        {%- if (test_case.stdout or test_case.err or test_case.test_description or test_case.warning_message) and test_case.outcome != test_case.SKIP %}
                         <tr style="display:none;">
                             <td class="col-xs-9" colspan="3">
                                 <strong> {%- if test_case.test_description %}<p>Test Description: {{ test_case.test_description }}</p>{% endif %} </strong>                            
